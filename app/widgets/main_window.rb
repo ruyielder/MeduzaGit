@@ -1,7 +1,6 @@
 require 'Qt'
+require_relative 'list_widget_paginator_widget'
 require_relative 'commit_list_widget'
-require_relative '../core/commit'
-
 
 class MainWindow < Qt::MainWindow
 
@@ -10,7 +9,8 @@ class MainWindow < Qt::MainWindow
     set_window_title 'MeduzaGit'
 
     list_widget = CommitListWidget.new(self, repository)
-    set_central_widget(list_widget)
+    list_widget_navigator = ListWidgetPaginatorWidget.new(self, list_widget)
+    set_central_widget(list_widget_navigator)
   end
 
 end

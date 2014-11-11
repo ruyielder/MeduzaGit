@@ -18,6 +18,7 @@ class ListWidgetPaginatorWidget < Qt::Widget
   def setup_widgets
     @prev_button.text = 'Poprzednia'
     @next_button.text = 'Następna'
+    update_buttons
   end
 
   def setup_layout
@@ -36,13 +37,13 @@ class ListWidgetPaginatorWidget < Qt::Widget
   end
 
   def display_prev_items
-    update_buttons
     @list_widget.display_prev_items
+    update_buttons
   end
 
   def display_next_items
-    update_buttons
     @list_widget.display_next_items
+    update_buttons
   end
 
   def update_buttons

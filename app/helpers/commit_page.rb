@@ -13,4 +13,8 @@ class CommitPage
     @commits.size
   end
 
+  def empty?
+    @commits.empty?
+  end
+
 end

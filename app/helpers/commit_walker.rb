@@ -22,7 +22,7 @@ class CommitWalker
     is_remote = false
 
     walker.each do |rugged_commit|
-      unless is_remote
+      if @remote_branch && !is_remote
         is_remote = rugged_commit == @remote_branch.target
       end
 

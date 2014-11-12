@@ -17,7 +17,9 @@ class ListWidgetPaginatorWidget < Qt::Widget
 
   def setup_widgets
     @prev_button.text = 'Poprzednia'
+    @prev_button.tool_tip = 'Ctrl+Shift+Tab'
     @next_button.text = 'Następna'
+    @next_button.tool_tip = 'Ctrl+Tab'
     update_buttons
   end
 
@@ -49,6 +51,14 @@ class ListWidgetPaginatorWidget < Qt::Widget
   def update_buttons
     @next_button.enabled = @list_widget.has_next_items?
     @prev_button.enabled = @list_widget.has_prev_items?
+  end
+
+  def keyPressEvent(event)
+    if event.modifiers == (Qt::ControlModifier | Qt::ShiftModifier) && event.key == Qt::Key_Backtab
+      display_prev_items if @prev_button.enabled
+    elsif event.modifiers == Qt::ControlModifier && event.key == Qt::Key_Tab
+      display_next_items if @next_button.enabled
+    end
   end
 
 end

@@ -6,9 +6,9 @@ require_relative 'app/helpers/desktop'
 class Launcher
   include Desktop
 
-  def initialize(argv)
-    @argv = argv
-    @repository_path = argv[0]
+  def initialize(repository_path, argv=nil)
+    @repository_path = repository_path
+    @argv = argv || []
   end
 
   def launch
@@ -22,5 +22,5 @@ class Launcher
 
 end
 
-launcher = Launcher.new(['/home/pk/des/r'])
+launcher = Launcher.new(Dir.pwd)
 launcher.launch

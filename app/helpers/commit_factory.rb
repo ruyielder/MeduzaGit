@@ -1,9 +1,15 @@
 require_relative 'commit'
+require_relative 'humanized_time_difference'
 
 class CommitFactory
 
   def create_from_rugged_commit(rugged_commit, is_remote)
-    Commit.new(rugged_commit.message, is_remote)
+    Commit.new(
+        message: rugged_commit.message,
+        time: rugged_commit.time,
+        humanized_time_difference: HumanizedTimeDifference.between(rugged_commit.time, Time.now),
+        is_remote: is_remote
+    )
   end
 
 end

@@ -1,20 +1,20 @@
 require 'rugged'
 require_relative 'commit_factory'
+require_relative 'commit_walker'
 
 class CommitProvider
 
-  def initialize(repository, commit_factory=nil)
+  def initialize(repository)
     @repository = repository
-    @commit_factory = commit_factory || CommitFactory.new
   end
 
   def get_commits(from_index, to_index)
     commits = []
-    walker = Rugged::Walker.new(@repository)
-    walker.push(@repository.last_commit)
-    walker.each_with_index do |rugged_commit, index|
+
+    walker = CommitWalker.new(@repository)
+    walker.each_with_index do |commit, index|
       if from_index <= index && index < to_index
-        commits << @commit_factory.create_from_rugged_commit(rugged_commit)
+        commits << commit
       elsif index >= to_index
         return commits
       end

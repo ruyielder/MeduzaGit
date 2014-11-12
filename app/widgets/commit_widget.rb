@@ -28,7 +28,7 @@ class CommitWidget < Qt::Widget
     end
     @message_label.text = @commit.message
     @message_label.font = Qt::Font.new('Verdana', 15)
-    @description_label.text = "przez #{@commit.author_name} #{@commit.humanized_time_difference}"
+    @description_label.text = "przez <b>#{@commit.author_name}</b> #{@commit.humanized_time_difference}"
     @copy_sha_button.text = 'SHA'
     @copy_sha_button.maximum_size = Qt::Size.new(50, 25)
     @copy_sha_button.tool_tip = 'Skopiuj SHA'

@@ -13,4 +13,8 @@ class Commit
     @is_remote
   end
 
+  def is_local?
+    !is_remote?
+  end
+
 end

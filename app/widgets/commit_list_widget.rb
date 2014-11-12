@@ -4,7 +4,7 @@ require_relative '../../app/helpers/commit_paginator'
 require_relative 'commit_widget'
 
 class CommitListWidget < Qt::ListWidget
-  ITEM_HEIGHT = 60
+  ITEM_HEIGHT = 70
   COMMITS_PER_PAGE = 20
 
   def initialize(parent, repository)

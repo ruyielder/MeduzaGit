@@ -9,7 +9,8 @@ class CommitFactory
         author_name: rugged_commit.author[:name],
         time: rugged_commit.time,
         humanized_time_difference: HumanizedTimeDifference.between(rugged_commit.time, Time.now),
-        is_remote: is_remote
+        is_remote: is_remote,
+        sha: rugged_commit.oid
     )
   end
 

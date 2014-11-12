@@ -3,6 +3,10 @@ require 'Qt'
 
 class CommitWidget < Qt::Widget
   slots :copy_commit_sha
+  @@even = false
+
+  FIRST_COLOR = Qt::Color.new('#E5E4E2')
+  SECOND_COLOR = Qt::Color.new('white')
 
   def initialize(parent, commit)
     super(parent)
@@ -13,6 +17,8 @@ class CommitWidget < Qt::Widget
     setup_widgets
     setup_slots
     setup_layout
+    @@even = !@@even
+    @is_even = @@even
   end
 
   def setup_widgets
@@ -51,6 +57,12 @@ class CommitWidget < Qt::Widget
 
   def paintEvent(event)
     painter = Qt::Painter.new(self)
+    if @is_even
+      painter.fillRect(rect, FIRST_COLOR)
+    else
+      painter.fillRect(rect, SECOND_COLOR)
+    end
+
     painter.drawRect(rect)
     painter.end
   end
